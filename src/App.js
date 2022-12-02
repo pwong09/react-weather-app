@@ -3,13 +3,13 @@ import CurrentWeather from "./components/currentWeather/currentWeather";
 import Search from "./components/search/search";
 import { OPENWEATHER_API_URL } from "./api.js";
 import { useState } from "react";
+import Forecast from "./components/forecast/forecast";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
 
   const handleOnSearchChange = (searchData) => {
-    console.log(searchData);
     const [lat, lon] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(
@@ -36,6 +36,7 @@ function App() {
     <div className="container">
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather && <CurrentWeather data={currentWeather} />}
+      {forecast && <Forecast data={forecast} />}
     </div>
   );
 }
